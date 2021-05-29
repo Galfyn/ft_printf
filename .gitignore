@@ -1,6 +1,10 @@
-.gitignore
 CMakeLists.txt
 .*
 main.c
 cmake-build-debug
 .idea
+*.o
+*.a
+libft
+a.out
+.gitignore

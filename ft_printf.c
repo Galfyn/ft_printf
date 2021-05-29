@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int printf(const char *format, ...)
+int ft_printf(const char *format, ...)
 {
 	va_list argptr;
 	char *str;
@@ -8,8 +8,9 @@ int printf(const char *format, ...)
 	va_start(argptr, format);
 
 	str = va_arg(argptr, char*);
-	nb = va_arg(argptr, int);
-
-
-
+	nb = va_arg(argptr, unsigned int);
+	ft_putnbr(nb);
+	ft_putstr(str);
+	va_end(argptr);
+	return (0);
 }
