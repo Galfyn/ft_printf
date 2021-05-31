@@ -1,34 +1,34 @@
 NAME =	libftprintf.a
 
-SRC =	ft_printf.c	./srcs/ft_putnbr.c	./srcs/ft_putstr.c
+SRC =	./srcs/ft_putnbr.c	./srcs/ft_parser.c	./srcs/ft_print_int.c ./srcs/ft_type.c	\
+		ft_printf.c
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
 FLAGS = -Wall -Wextra -Werror
 
 all : libft_check $(NAME)
-
+	@echo completed
 $(NAME) : $(OBJ)
-	ar rcs $(NAME) $?
+	@ar rcs $(NAME) $?
 
 %.o : %.c
-	gcc $(FLAGS) -c $< -o $@ -include ft_printf.h
+	@gcc $(FLAGS) -c $< -o $@ -include ft_printf.h
 
 libft_check :
-	make -C ./libft
+	@make -C ./libft
 
 libft_clean :
-	make clean -C ./libft
+	@make clean -C ./libft
 
 
 clean : libft_clean
-	rm -f $(NAME) $(OBJ) $(LIBFT)
+	@rm -f $(OBJ)
+	@echo clean completed
 
 fclean : clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
-re :
-	fclean all
+re : fclean all
 
-.PHONY :
-	all clean fclean re libft_check libft_clean
+.PHONY : all clean fclean re libft_check libft_clean

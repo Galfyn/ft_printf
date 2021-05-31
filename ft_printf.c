@@ -1,16 +1,27 @@
 #include "ft_printf.h"
 
+
 int ft_printf(const char *format, ...)
 {
 	va_list argptr;
-	char *str;
-	unsigned int nb;
-	va_start(argptr, format);
+	int length;
+	char *temp;
 
-	str = va_arg(argptr, char*);
-	nb = va_arg(argptr, unsigned int);
-	ft_putnbr(nb);
-	ft_putstr(str);
+	length = 0;
+	temp = (char *)format;
+	va_start(argptr, format);
+	while (*temp)
+	{
+		if (*temp == '%')
+			length = ft_parser(&temp, argptr);
+		if (*temp)
+		{
+			write(1, temp, 1);
+			temp++;
+			length++;
+		}
+	}
+
 	va_end(argptr);
-	return (0);
+	return (length);
 }
