@@ -14,6 +14,7 @@ typedef struct s_format
 }t_format;
 
 int		ft_parser (char **format, va_list ap);
+int		ft_print_char(va_list ap, t_format *spec);
 int		ft_print_int(va_list ap, t_format *spec);
 int		ft_type (char **format, va_list ap, t_format *spec);
 int		ft_printf(const char *format, ...);
