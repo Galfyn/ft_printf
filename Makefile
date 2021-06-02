@@ -1,7 +1,7 @@
 NAME =	libftprintf.a
 
-SRC =	./srcs/ft_putnbr.c	./srcs/ft_parser.c	./srcs/ft_print_int.c ./srcs/ft_type.c ./srcs/ft_print_char.c	\
-		ft_printf.c
+SRC =	./srcs/ft_putnbr.c	./srcs/ft_putstr.c	./srcs/ft_parser.c	./srcs/ft_print_int.c ./srcs/ft_type.c ./srcs/ft_print_char.c	\
+		./srcs/ft_print_string.c	ft_printf.c
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
@@ -31,7 +31,7 @@ fclean : clean
 
 re : fclean all
 
-test : all
+test : all clean libft_clean
 	gcc main.c libftprintf.a libft/libft.a && ./a.out
 
 .PHONY : all clean fclean re libft_check libft_clean

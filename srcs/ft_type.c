@@ -9,6 +9,8 @@ int ft_type (char **format, va_list ap, t_format *spec)
 		len = ft_print_int(ap, spec);
 	if (**format == 'c')
 		len = ft_print_char(ap, spec);
+	if (**format == 's')
+		len = ft_print_string(ap, spec);
 	(*format)++;
 	return (len);
 }

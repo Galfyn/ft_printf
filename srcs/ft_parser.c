@@ -1,6 +1,6 @@
 #include "../ft_printf.h"
 
-static void ft_struct_init(t_format *spec)
+static void	ft_struct_init(t_format *spec)
 {
 	spec->minus = 0;
 	spec->zero = 0;
@@ -10,7 +10,7 @@ static void ft_struct_init(t_format *spec)
 	spec->type = 0;
 }
 
-int ft_parser (char **format, va_list ap)
+int	ft_parser (char **format, va_list ap)
 {
 	t_format	spec;
 	int			len;

@@ -1,11 +1,10 @@
 #include "ft_printf.h"
 
-
-int ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
-	va_list argptr;
-	int length;
-	char *temp;
+	va_list	argptr;
+	int		length;
+	char	*temp;
 
 	length = 0;
 	temp = (char *)format;
@@ -21,7 +20,6 @@ int ft_printf(const char *format, ...)
 			length++;
 		}
 	}
-
-	va_end(argptr);
+	va_end (argptr);
 	return (length);
 }

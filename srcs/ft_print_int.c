@@ -1,8 +1,8 @@
 #include "../ft_printf.h"
 
-int static ft_intLen(int integer)
+int static	ft_intLen(int integer)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (integer > 9)
@@ -14,11 +14,11 @@ int static ft_intLen(int integer)
 	return (i);
 }
 
-int ft_print_int(va_list ap, t_format *spec)
+int	ft_print_int(va_list ap, t_format *spec)
 {
-	int integer;
-	int len;
-	int result;
+	int	integer;
+	int	len;
+	int	result;
 
 	integer = va_arg(ap, int);
 	len = 0;
@@ -31,7 +31,7 @@ int ft_print_int(va_list ap, t_format *spec)
 	result = len;
 	while (len > spec->precision && len > ft_intLen(integer))
 	{
-		if (spec->dot != 1 && spec->zero == 1)
+		if (spec->dot == 0 && spec->zero == 1)
 			write(1, "0", 1);
 		else
 			write(1, " ", 1);

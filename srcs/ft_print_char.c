@@ -1,31 +1,32 @@
 #include "../ft_printf.h"
 
-int ft_print_char(va_list ap, t_format *spec)
+static void	ft_print_width(int len, t_format *spec)
 {
-	int	len;
-	char *result;
+	while (len > 1)
+	{
+		if (spec->zero == 0 || spec->minus == 1)
+			write(1, " ", 1);
+		if (spec->zero == 1 && spec->minus == 0)
+			write(1, "0", 1);
+		len--;
+	}
+}
 
-	result = va_arg(ap, char*);
+int	ft_print_char(va_list ap, t_format *spec)
+{
+	int		len;
+	char	*result;
+
+	result = va_arg(ap, char *);
 	len = 0;
-
-	if (spec->minus == 1 && spec->zero == 0)
+	if ((spec->minus == 1 && spec->zero == 0) || (spec->minus == 1
+			&& spec->zero == 1))
 		write(1, &result, 1);
 	if (spec->width > 1)
 	{
 		len = spec->width;
-		while (len > 1)
-		{
-			write(1, " ", 1);
-			len--;
-		}
+		ft_print_width(len, spec);
 	}
-	if (spec->width > 1 && spec->zero == 1)
-		len = spec->width;
-		while (len > 1)
-		{
-			write(1, "0", 1);
-			len--;
-		}
 	if (spec->minus == 0)
 		write(1, &result, 1);
 	return (len);
