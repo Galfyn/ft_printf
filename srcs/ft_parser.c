@@ -22,7 +22,7 @@ int	ft_parser (char **format, va_list ap)
 	{
 		if (**format == '-')
 			spec.minus = 1;
-		if (**format == '0')
+		if (**format == '0' && (*(*format - 1) == '%' || *(*format - 1) == '-'))
 			spec.zero = 1;
 		if (ft_isdigit(**format) && spec.dot != 1)
 			spec.width = (spec.width * 10) + (**format - '0');
