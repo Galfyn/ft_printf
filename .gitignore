@@ -3,7 +3,6 @@ cmake-build-debug
 .idea
 libft
 CMakeLists.txt
-main.c
 .gitignore
 *.o
 *.a
