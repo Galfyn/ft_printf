@@ -1,6 +1,6 @@
 #include "../ft_printf.h"
 
-int static	ft_intLen(int integer)
+static int	ft_intLen(int integer)
 {
 	int	i;
 
@@ -13,50 +13,84 @@ int static	ft_intLen(int integer)
 	i++;
 	return (i);
 }
-void static ft_print_width(int len, t_format *spec, int integer)
+static void	ft_print_width(int len, t_format *spec, int integer, int precision)
 {
-	while (len > ft_intLen(integer))
+	if (integer < 0)
+		len -= 2;
+	while (len > precision)
 	{
-		if (spec->dot == 0 && spec->zero == 1)
+		if ((spec->dot == 1 && !spec->width) || (spec->zero == 1 &&
+			spec->minus != 1 &&spec->dot != 1))
 			write(1, "0", 1);
 		else
 			write(1, " ", 1);
 		len--;
 	}
+	if (precision > ft_intLen(integer))
+		while (precision-- > ft_intLen(integer))
+			write(1, "0", 1);
 }
-static void ft_print_int_space(int integer, int len, t_format *spec)
+static void ft_align_left (int integer, int len, t_format *spec, int precision)
 {
-	ft_putnbr(integer);
-	ft_print_width(len, spec, integer);
+	int c;
+
+	c = 0;
+	if (integer < 0)
+	{
+		integer *= -1;
+		ft_putchar_fd(1, '-');
+	}
+	if (integer > 9)
+	{
+		ft_putnbr(integer / 10);
+		ft_putnbr(integer % 10);
+	}
+	else
+	{
+		c = integer + 48;
+		write(1, &c, 1);
+	}
+	ft_print_width(len, spec, integer, precision);
 }
-static void ft_print_space_int(int integer, int len, t_format *spec)
+static void ft_align_right (int integer, int len, t_format *spec, int precision)
 {
-	ft_print_width(len, spec, integer);
-	ft_putnbr(integer);
+	int c;
+
+	c = 0;
+	ft_print_width(len, spec, integer, precision);
+	if (integer < 0)
+		integer *= -1;
+	if (integer > 9)
+	{
+		ft_putnbr(integer / 10);
+		ft_putnbr(integer % 10);
+	}
+	else
+	{
+		c = integer + 48;
+		write(1, &c, 1);
+	}
+
 }
+
 int	ft_print_int(va_list ap, t_format *spec)
 {
 	int integer;
 	int len;
-	int result;
+	int precision;
 
 	integer = va_arg(ap, int);
 	len = 0;
+	precision = 0;
 	if (spec->precision < ft_intLen(integer))
-		len = ft_intLen(integer);
+		precision = ft_intLen(integer);
 	if (spec->precision > ft_intLen(integer))
-		len = spec->precision;
-	if (spec->width > len)
+		precision = spec->precision;
+	if (spec->width > precision)
 		len = spec->width;
-	if (spec->minus == 1)
-		ft_print_int_space(integer, len, spec);
-	if (spec->zero == 1 && spec->dot != 1)
-		ft_print_space_int(integer, len, spec);
-	if (spec->width > ft_intLen(integer) && spec->minus != 1 && spec->zero != 1)
-		ft_print_space_int(integer, len, spec);
-	if (spec->zero == 1 && spec->dot == 1 && spec->minus != 1)
-		ft_print_space_int(integer, len, spec);
-
-	result = len;
-	return (result);
+	if (spec->minus == 1 && spec->width > 0)
+		ft_align_left(integer, len, spec, precision);
+	else
+		ft_align_right(integer, len, spec, precision);
+	return (len);
 }
