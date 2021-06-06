@@ -417,11 +417,11 @@ int	main(void)
 //	//// ft_printf("06) my       PRINTF : |");
 //	//// ft_printf("%%%");
 //	//// ft_printf("|\n\n");
-//	ft_printf("return for st PRINTF : %d\nreturn for my PRINTF : %d\n\n", printf("%%"), ft_printf("%%"));
-//	ft_printf("return for st PRINTF : %d\nreturn for my PRINTF : %d\n\n", printf("%5%"), ft_printf("%5%"));
-//	ft_printf("return for st PRINTF : %d\nreturn for my PRINTF : %d\n\n", printf("%.*s|\n", 5, "kekwait"), ft_printf("%.*s|\n", 5, "kekwait"));
-//	printf("%d\n", printf("%d, ", printf("kekw, ")));
-//	ft_printf("%d\n", ft_printf("%d, ", ft_printf("kekw, ")));
+	ft_printf("return for st PRINTF : %d\nreturn for my PRINTF : %d\n\n", printf("%%"), ft_printf("%%"));
+	ft_printf("return for st PRINTF : %d\nreturn for my PRINTF : %d\n\n", printf("%5%"), ft_printf("%5%"));
+	ft_printf("return for st PRINTF : %d\nreturn for my PRINTF : %d\n\n", printf("%.*s|\n", 5, "kekwait"), ft_printf("%.*s|\n", 5, "kekwait"));
+	printf("%d\n", printf("%d, ", printf("kekw, ")));
+	ft_printf("%d\n", ft_printf("%d, ", ft_printf("kekw, ")));
 //	ft_printf("--------------------%%kek------------------\n");
 //	printf("01) standart PRINTF : |%.*s|\n", 5, "kekwait");
 //	ft_printf("01) my       PRINTF : |%.*s|\n", 5, "kekwait");

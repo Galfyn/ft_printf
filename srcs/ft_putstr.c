@@ -13,9 +13,9 @@
 #include <unistd.h>
 #include "../ft_printf.h"
 
-void		ft_putstr(char *str)
+void	ft_putstr(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')

@@ -6,7 +6,7 @@
 /*   By: galfyn <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 17:58:04 by galfyn            #+#    #+#             */
-/*   Updated: 2021/05/29 15:14:02 by galfyn           ###   ########.fr       */
+/*   Updated: 2021/06/06 17:50:18 by galfyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void	ft_putnbr(int nb)
+void	ft_putnbr(long long nbr)
 {
-	long nbr;
-
-	nbr = nb;
 	if (nbr < 0)
 	{
 		ft_putchar('-');

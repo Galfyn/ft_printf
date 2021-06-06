@@ -23,6 +23,6 @@ int		ft_print_char(va_list ap, t_format *spec);
 int		ft_print_int(va_list ap, t_format *spec);
 
 void	ft_putstr(char *str);
-void	ft_putnbr(int nb);
+void	ft_putnbr(long long nbr);
 
 #endif
