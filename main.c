@@ -211,8 +211,8 @@ int	main(void)
 	ft_printf("03) my       PRINTF : |%-d|\n", 42);
 	printf("04) standart PRINTF : |%10d|\n", 100);
 	ft_printf("04) my       PRINTF : |%10d|\n", 100);
-	printf("05) standart PRINTF : |%-10d|\n", 64);
-	ft_printf("05) my       PRINTF : |%-10d|\n", 64);
+	printf("05) standart PRINTF : |%-10d|\n", 6451);
+	ft_printf("05) my       PRINTF : |%-10d|\n", 6451);
 	printf("06) standart PRINTF : |%.10d|\n", 100);
 	ft_printf("06) my       PRINTF : |%.10d|\n", 100);
 	printf("07) standart PRINTF : |%10.5d|\n", 100);

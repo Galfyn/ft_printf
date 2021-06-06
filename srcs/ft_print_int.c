@@ -5,6 +5,8 @@ static int	ft_intLen(int integer)
 	int	i;
 
 	i = 0;
+	if (integer < 0)
+		integer *= -1;
 	while (integer > 9)
 	{
 		integer /= 10;
@@ -16,60 +18,45 @@ static int	ft_intLen(int integer)
 static void	ft_print_width(int len, t_format *spec, int integer, int precision)
 {
 	if (integer < 0)
-		len -= 2;
+		len -= 1;
 	while (len > precision)
 	{
 		if ((spec->dot == 1 && !spec->width) || (spec->zero == 1 &&
-			spec->minus != 1 &&spec->dot != 1))
+												 spec->minus != 1 &&
+												 spec->dot != 1))
 			write(1, "0", 1);
 		else
 			write(1, " ", 1);
 		len--;
 	}
 	if (precision > ft_intLen(integer))
+	{
+		if (integer < 0)
+			write(1, "-", 1);
 		while (precision-- > ft_intLen(integer))
 			write(1, "0", 1);
+
+	}
 }
 static void ft_align_left (int integer, int len, t_format *spec, int precision)
 {
-	int c;
-
-	c = 0;
 	if (integer < 0)
 	{
 		integer *= -1;
-		ft_putchar_fd(1, '-');
+		len -= 1;
+		write(1, "-", 1);
 	}
-	if (integer > 9)
-	{
-		ft_putnbr(integer / 10);
-		ft_putnbr(integer % 10);
-	}
-	else
-	{
-		c = integer + 48;
-		write(1, &c, 1);
-	}
+	ft_putnbr(integer);
 	ft_print_width(len, spec, integer, precision);
 }
 static void ft_align_right (int integer, int len, t_format *spec, int precision)
 {
-	int c;
-
-	c = 0;
 	ft_print_width(len, spec, integer, precision);
+	if (integer < 0 && precision <= ft_intLen(integer))
+		write(1, "-", 1);
 	if (integer < 0)
 		integer *= -1;
-	if (integer > 9)
-	{
-		ft_putnbr(integer / 10);
-		ft_putnbr(integer % 10);
-	}
-	else
-	{
-		c = integer + 48;
-		write(1, &c, 1);
-	}
+	ft_putnbr(integer);
 
 }
 

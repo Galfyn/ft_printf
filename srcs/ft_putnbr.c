@@ -20,23 +20,21 @@ void	ft_putchar(char c)
 
 void	ft_putnbr(int nb)
 {
-	if (nb == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return ;
-	}
-	if (nb < 0)
+	long nbr;
+
+	nbr = nb;
+	if (nbr < 0)
 	{
 		ft_putchar('-');
-		nb = -nb;
+		nbr = -nbr;
 	}
-	if (nb > 9)
+	if (nbr > 9)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ft_putnbr(nbr / 10);
+		ft_putnbr(nbr % 10);
 	}
 	else
 	{
-		ft_putchar(nb + 48);
+		ft_putchar(nbr + 48);
 	}
 }
