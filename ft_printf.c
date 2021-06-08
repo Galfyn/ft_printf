@@ -12,8 +12,8 @@ int	ft_printf(const char *format, ...)
 	while (*temp)
 	{
 		if (*temp == '%')
-			length = ft_parser(&temp, argptr);
-		if (*temp)
+			length += ft_parser(&temp, argptr);
+		if (*temp && *temp != '%')
 		{
 			write(1, temp, 1);
 			temp++;

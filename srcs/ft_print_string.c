@@ -1,17 +1,23 @@
 #include "../ft_printf.h"
-static void	ft_print_width(int len, int lenstr, t_format *spec)
+
+static int	ft_print_width(int width, int precision, t_format *spec)
 {
-	while (len > lenstr)
+	int len;
+
+	len = 0;
+	while (width > precision)
 	{
 		if (spec->zero != 1 || spec->minus == 1)
 			write(1, " ", 1);
 		if (spec->zero == 1 && spec->minus != 1)
 			write(1, "0", 1);
-		len--;
+		width--;
+		len++;
 	}
+	return (len);
 }
 
-static int	ft_precesion_init(char *str, t_format *spec)
+static int	ft_precision_init(char *str, t_format *spec)
 {
 	int	len;
 
@@ -27,28 +33,28 @@ static int	ft_precesion_init(char *str, t_format *spec)
 	return (len);
 }
 
-int	ft_print_string(va_list ap, t_format *spec)
+int	ft_print_string(char *string, t_format *spec)
 {
-	int		len;
-	int		lenP;
-	char	*result;
+	int 	len;
+	int		width;
+	int		precision;
 
-	len = 0;
-	result = va_arg(ap, char *);
-	if (result == NULL)
-		result = "(null)";
-	lenP = ft_precesion_init(result, spec);
-	if (spec->width > lenP)
-		len = spec->width;
+	width = 0;
+	if (string == NULL)
+		string = "(null)";
+	precision = ft_precision_init(string, spec);
+	len = precision;
+	if (spec->width > precision)
+		width = spec->width;
 	if (spec->minus == 1)
 	{
-		write(1, result, lenP);
-		ft_print_width(len, lenP, spec);
+		write(1, string, precision);
+		len += ft_print_width(width, precision, spec);
 	}
 	else
 	{
-		ft_print_width(len, lenP, spec);
-		write(1, result, lenP);
+		len += ft_print_width(width, precision, spec);
+		write(1, string, precision);
 	}
 	return (len);
 }

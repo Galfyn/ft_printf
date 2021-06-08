@@ -16,6 +16,8 @@ int	ft_parser (char **format, va_list ap)
 	int			len;
 
 	(*format)++;
+	if (**format == '\0')
+		return (0);
 	ft_struct_init(&spec);
 	len = 0;
 	while (!ft_isalpha(**format))
@@ -34,8 +36,11 @@ int	ft_parser (char **format, va_list ap)
 			spec.precision = (spec.precision * 10) + (**format - '0');
 		if (**format == '*' && spec.dot == 1)
 			spec.precision = va_arg(ap, int);
+		if (**format == '%')
+			break ;
+
 		(*format)++;
 	}
-	len = ft_type(format, ap, &spec);
+	len += ft_type(format, ap, &spec);
 	return (len);
 }

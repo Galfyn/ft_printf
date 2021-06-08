@@ -7,31 +7,27 @@ OBJ = $(patsubst %.c, %.o, $(SRC))
 
 FLAGS = -Wall -Wextra -Werror
 
-all : libft_check $(NAME)
+all : $(NAME)
 	@echo completed
+	@make -C ./libft
 $(NAME) : $(OBJ)
 	@ar rcs $(NAME) $?
 
 %.o : %.c
 	@gcc $(FLAGS) -c $< -o $@ -include ft_printf.h
 
-libft_check :
-	@make -C ./libft
-
-libft_clean :
-	@make clean -C ./libft
-
-
-clean : libft_clean
+clean :
 	@rm -f $(OBJ)
+	@make clean -C ./libft
 	@echo clean completed
 
 fclean : clean
 	@rm -f $(NAME)
+	@make fclean -C ./libft
 
 re : fclean all
 
-test : all clean libft_clean
+test : all clean
 	gcc main.c libftprintf.a libft/libft.a && ./a.out
 
-.PHONY : all clean fclean re libft_check libft_clean
+.PHONY : all clean fclean re
