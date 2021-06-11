@@ -19,7 +19,7 @@ int		ft_type (char **format, va_list ap, t_format *spec);
 int		ft_parser (char **format, va_list ap);
 
 int		ft_print_string(char *string, t_format *spec);
-int		ft_print_pointer(void *pointer,t_format *spec);
+int		ft_print_pointer(va_list ap, t_format *spec);
 int		ft_print_char(int symbol, t_format *spec);
 int		ft_print_int(long integer, t_format *spec);
 

@@ -8,8 +8,8 @@ int	main(void)
 //	printf(" = %d\n", printf("|%p| |%p|", LONG_MIN, LONG_MAX));
 //	printf(" = %d\n", ft_printf("|%p| |%p|", ULONG_MAX, -ULONG_MAX));
 //	printf(" = %d\n", printf("|%p| |%p|", ULONG_MAX, -ULONG_MAX));
-//	int	*tab = (int*)malloc(sizeof(int) * 10);
-//	int	*tab2 = (int*)malloc(0);
+	int	*tab = (int*)malloc(sizeof(int) * 10);
+	int	*tab2 = (int*)malloc(0);
 //	char	*str;
 //	str = "hello";
 //	char	*line;
@@ -164,42 +164,48 @@ int	main(void)
 //	printf("hello ca%----4c %1c va %10c%-c ??\n", '\0', '\n', (char)564, 0);
 //	ft_printf("hello ca%----4c %1c va %10c%-c ??\n", '\0', '\n', (char)564, 0);
 //	ft_printf("--------------------%%p--------------------\n");
-//	printf("01) standart PRINTF : |%p|\n", "salut");
-//	ft_printf("01) my       PRINTF : |%p|\n", "salut");
-//	printf("02) standart PRINTF : |%-p|\n", tab2);
-//	ft_printf("02) my       PRINTF : |%-p|\n", tab2);
-//	printf("03) standart PRINTF : |%---------p|\n", "test2");
-//	ft_printf("03) my       PRINTF : |%----------p|\n", "test2");
-//	printf("04) standart PRINTF : |%10p|\n", "42");
-//	ft_printf("04) my       PRINTF : |%10p|\n", "42");
-//	printf("05) standart PRINTF : |%-10p|\n", "42");
-//	ft_printf("05) my       PRINTF : |%-10p|\n", "42");
-//	printf("06) standart PRINTF : |%2p|\n", tab);
-//	ft_printf("06) my       PRINTF : |%2p|\n", tab);
-//	printf("07) standart PRINTF : |%-2p|\n", tab);
-//	ft_printf("07) my       PRINTF : |%-2p|\n", tab);
-//	printf("08) standart PRINTF : |%p|\n", "\0\0\0\0\0");
-//	ft_printf("08) my       PRINTF : |%p|\n", "\0\0\0\0\0");
-//	printf("09) standart PRINTF : |%20p|\n", "\0\0\0\0\0");
-//	ft_printf("09) my       PRINTF : |%20p|\n", "\0\0\0\0\0");
-//	printf("10) standart PRINTF : |%p|\n", "");
-//	ft_printf("10) my       PRINTF : |%p|\n", "");
-//	printf("11) standart PRINTF : |%p|\n", NULL);
-//	ft_printf("11) my       PRINTF : |%p|\n", NULL);
-//	printf("12) standart PRINTF : |%10p|\n", NULL);
-//	ft_printf("12) my       PRINTF : |%10p|\n", NULL);
-//	printf("13) standart PRINTF : |%-10p|\n", NULL);
-//	ft_printf("13) my       PRINTF : |%-10p|\n", NULL);
-//
-//
-//	// //printf("14) standart PRINTF : |%.1p|\n", NULL);
-//	// //ft_printf("14) my       PRINTF : |%.1p|\n", NULL);
-//	// //printf("15) standart PRINTF : |%10.2p|\n", NULL);
-//	// //ft_printf("15) my       PRINTF : |%10.2p|\n", NULL);
-//	// //printf("16) standart PRINTF : |%2.5p|\n", NULL);
-//	// //ft_printf("16) my       PRINTF : |%2.5p|\n", NULL);
-//	// //printf("17) standart PRINTF : |%-10.2p|\n", NULL);
-//	// //ft_printf("17) my       PRINTF : |%-10.2p|\n", NULL);
+	printf("01) standart PRINTF : |%p|\n", "salut");
+	ft_printf("01) my       PRINTF : |%p|\n", "salut");
+	printf("02) standart PRINTF : |%-15p|\n", tab2);
+	ft_printf("02) my       PRINTF : |%-15p|\n", tab2);
+	printf("03) standart PRINTF : |%---------p|\n", "test2");
+	ft_printf("03) my       PRINTF : |%----------p|\n", "test2");
+	printf("04) standart PRINTF : |%10p|\n", "42");
+	ft_printf("04) my       PRINTF : |%10p|\n", "42");
+	printf("05) standart PRINTF : |%-10p|\n", "42");
+	ft_printf("05) my       PRINTF : |%-10p|\n", "42");
+	printf("06) standart PRINTF : |%2p|\n", tab);
+	ft_printf("06) my       PRINTF : |%2p|\n", tab);
+	printf("07) standart PRINTF : |%-2p|\n", tab);
+	ft_printf("07) my       PRINTF : |%-2p|\n", tab);
+	printf("08) standart PRINTF : |%p|\n", "\0\0\0\0\0");
+	ft_printf("08) my       PRINTF : |%p|\n", "\0\0\0\0\0");
+	printf("09) standart PRINTF : |%20p|\n", "\0\0\0\0\0");
+	ft_printf("09) my       PRINTF : |%20p|\n", "\0\0\0\0\0");
+	printf("10) standart PRINTF : |%p|\n", "");
+	ft_printf("10) my       PRINTF : |%p|\n", "");
+	printf("11) standart PRINTF : |%p|\n", NULL);
+	ft_printf("11) my       PRINTF : |%p|\n", NULL);
+	printf("12) standart PRINTF : |%10p|\n", NULL);
+	ft_printf("12) my       PRINTF : |%10p|\n", NULL);
+	printf("13) standart PRINTF : |%-10p|\n", NULL);
+	ft_printf("13) my       PRINTF : |%-10p|\n", NULL);
+
+
+	 printf("14) standart PRINTF : |%.1p|\n", NULL);
+	 ft_printf("14) my       PRINTF : |%.1p|\n", NULL);
+	 printf("15) standart PRINTF : |%10.2p|\n", NULL);
+	 ft_printf("15) my       PRINTF : |%10.2p|\n", NULL);
+	 printf("16) standart PRINTF : |%2.5p|\n", NULL);
+	 ft_printf("16) my       PRINTF : |%2.5p|\n", NULL);
+	 printf("17) standart PRINTF : |%-10.2p|\n", NULL);
+	 ft_printf("17) my       PRINTF : |%-10.2p|\n", NULL);
+
+	printf("%.5p|\n", NULL);
+	ft_printf("%.5p|\n", NULL);
+
+
+
 //	free(tab);
 //	free(tab2);
 //	ft_printf("----------------%%d-%%i--------------------\n");
@@ -440,8 +446,7 @@ int	main(void)
 //	printf("01) standart PRINTF : |%.3X|\n", 17);
 //	ft_printf("01) my       PRINTF : |%.3X|\n", 17);
 
-	long a = 0x7ffeeb80595c;
-	printf("%30.20p|\n", &a);
+
 
 }
 

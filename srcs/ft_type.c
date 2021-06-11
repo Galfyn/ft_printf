@@ -25,7 +25,7 @@ int	ft_type(char **format, va_list ap, t_format *spec)
 	if (**format == 'u')
 		len += ft_print_int(va_arg(ap,unsigned int), spec);
 	if (**format == 'p')
-		len += ft_print_pointer(va_arg(ap, void *), spec);
+		len += ft_print_pointer(ap, spec);
 	if (ft_search_spec(format))
 		(*format)++;
 	return (len);
