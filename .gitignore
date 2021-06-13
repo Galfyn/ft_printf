@@ -7,4 +7,6 @@ CMakeLists.txt
 *.o
 *.a
 a.out
-Other
+Otherpft/
+42TESTERS-PRINTF
+pft

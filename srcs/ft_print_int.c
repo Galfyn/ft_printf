@@ -1,6 +1,6 @@
 #include "../ft_printf.h"
 
-static int	ft_intLen(long integer)
+static int	ft_count_int(long integer)
 {
 	int	i;
 
@@ -9,6 +9,8 @@ static int	ft_intLen(long integer)
 	{
 		integer *= -1;
 	}
+	if (integer == 0)
+		return (1);
 	while (integer > 0)
 	{
 		integer /= 10;
@@ -17,66 +19,63 @@ static int	ft_intLen(long integer)
 	return (i);
 }
 
-static int	ft_print_width(int width, t_format *spec, long integer, int precision)
+static int	ft_print_width(int width, t_format *spec, int precision, long
+integer)
 {
-	char	c;
-	int		len;
+	size_t 	len;
 
-	c = ' ';
-	len = 0;
 	if (integer < 0)
 		width -= 1;
-	if (spec->zero == 1 && spec->dot != 1)
-		c = '0';
-	if (spec->minus == 1)
-		c = ' ';
-	if (c == '0' && integer < 0)
-		write(1, "-", 1);
-	while (width > precision)
-	{
-		if (spec->width > 0)
-			write(1, &c, 1);
-		else
-			write(1, "0", 1);
-		width--;
-		len++;
-	}
-	if (integer < 0 && c == ' ')
-		write(1, "-", 1);
-	while (precision-- > ft_intLen(integer))
-	{
-		write(1, "0", 1);
-		len++;
-	}
-	return (len);
+	len = 0;
+	if (spec->width != 0)
+		while (width-- > precision)
+			len += write(1, " ", 1);
+	return ((int)len);
 }
 
 static int	ft_align_left(long integer, int width, t_format *spec, int precision)
 {
-	int	len;
+	size_t 	len;
+	int		tmp;
 
-	len = ft_intLen(integer);
+	tmp = precision;
+	len = ft_count_int(integer);
 	if (integer < 0)
 	{
 		integer *= -1;
 		width -= 1;
-		write(1, "-", 1);
+		len += write(1, "-", 1);
 	}
+	while (tmp-- > ft_count_int(integer))
+		len += write(1, "0", 1);
 	ft_putnbr(integer);
-	len += ft_print_width(width, spec, integer, precision);
-	return (len);
+	len += ft_print_width(width, spec, precision, integer);
+	return ((int)len);
 }
 
 static int	ft_align_right(long integer, int width, t_format *spec, int precision)
 {
-	int	len;
+	size_t	len;
 
-	len = ft_intLen(integer);
-	len += ft_print_width(width, spec, integer, precision);
+	len = ft_count_int(integer);
+	if (spec->zero == 1 && spec->width > 0 && spec->dot != 1)
+	{
+		precision = spec->width;
+		if (integer < 0)
+			precision -= 1;
+	}
+	len += ft_print_width(width, spec, precision, integer);
 	if (integer < 0)
+	{
 		integer *= -1;
+		width -= 1;
+		len += write(1, "-", 1);
+	}
+
+	while (precision-- > ft_count_int(integer))
+		len += write(1, "0", 1);
 	ft_putnbr(integer);
-	return (len);
+	return ((int)len);
 }
 
 int	ft_print_int(long integer, t_format *spec)
@@ -85,19 +84,22 @@ int	ft_print_int(long integer, t_format *spec)
 	int			width;
 	int			precision;
 
-	width = 0;
-	precision = 0;
-	if (!integer && spec->dot == 1)
-		return (0);
-	if (spec->precision > ft_intLen(integer))
+	if (!integer && spec->dot == 1 && spec->precision == 0)
+	{
+		len = ft_print_width(spec->width, spec, spec->precision, integer);
+		return (len);
+	}
+	if (spec->precision > ft_count_int(integer))
 		precision = spec->precision;
 	else
-		precision = ft_intLen(integer);
-	if (spec->width > precision)
-		width = spec->width;
+		precision = ft_count_int(integer);
+	if (spec->width < precision)
+		width = ft_count_int(integer);
 	else
-		width = ft_intLen(integer);
-	if (spec->minus == 1 && spec->width > 0)
+		width = spec->width;
+	if (spec->width < 0)
+		width = spec->width * -1;
+	if ((spec->minus == 1 && spec->width > 0) || spec->width < 0)
 		len = ft_align_left(integer, width, spec, precision);
 	else
 		len = ft_align_right(integer, width, spec, precision);
