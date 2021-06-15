@@ -2,7 +2,7 @@
 
 static int	ft_print_width(int width, int precision, t_format *spec)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (width < 0)
@@ -29,7 +29,7 @@ static int	ft_precision_init(char *str, t_format *spec)
 	{
 		if (spec->precision >= (int)ft_strlen(str) || spec->precision < 0)
 			len = (int)ft_strlen(str);
-		if (spec->precision < (int)ft_strlen(str) && spec->precision > 0)
+		else
 			len = spec->precision;
 	}
 	return (len);
@@ -37,7 +37,7 @@ static int	ft_precision_init(char *str, t_format *spec)
 
 int	ft_print_string(char *string, t_format *spec)
 {
-	int 	len;
+	int		len;
 	int		width;
 	int		precision;
 

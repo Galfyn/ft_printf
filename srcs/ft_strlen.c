@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galfyn <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: galfyn <galfyn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/08 17:58:04 by galfyn            #+#    #+#             */
-/*   Updated: 2021/06/15 15:55:07 by galfyn           ###   ########.fr       */
+/*   Created: 2021/04/20 18:18:52 by galfyn            #+#    #+#             */
+/*   Updated: 2021/04/21 14:44:27 by galfyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "../ft_printf.h"
-
-void	ft_putchar(char c)
+size_t	ft_strlen(const char *s)
 {
-	write(1, &c, 1);
-}
+	int	i;
 
-void	ft_putnbr(long long nbr)
-{
-	if (nbr < 0)
+	i = 0;
+	while (s[i] != '\0')
 	{
-		ft_putchar('-');
-		nbr = -nbr;
+		i++;
 	}
-	if (nbr > 9)
-	{
-		ft_putnbr(nbr / 10);
-		ft_putnbr(nbr % 10);
-	}
-	else
-	{
-		ft_putchar(nbr + 48);
-	}
+	return (i);
 }

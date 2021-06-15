@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: galfyn <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: galfyn <galfyn@student.21-school.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/08 13:18:15 by galfyn            #+#    #+#             */
-/*   Updated: 2021/06/13 12:52:55 by galfyn           ###   ########.fr       */
+/*   Created: 2021/04/20 19:26:38 by galfyn            #+#    #+#             */
+/*   Updated: 2021/04/20 19:33:11 by galfyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "../ft_printf.h"
 
-void	ft_putstr(char *str)
+int	ft_isdigit(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
 }
